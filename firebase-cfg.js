@@ -25,9 +25,14 @@ messaging.requestPermission().then(function () {
         // add token to html
         document.getElementById("token").innerHTML = token;
 
-
         // Send this token to your backend server
         // for later use when sending push messages
+
+        // Handle notification click event in foreground
+        messaging.onMessage(function (payload) {
+            console.log("Message received on foreground: ", payload);
+            // ...
+        });
     });
 }).catch(function (err) {
     console.log("Unable to get permission to notify.", err);

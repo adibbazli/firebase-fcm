@@ -19,15 +19,8 @@ const messaging = firebase.messaging();
 
 console.log("I am ready!");
 
-
 // Handle incoming messages
 messaging.onBackgroundMessage(function (payload) {
     console.log("Message received on background: ", payload);
     // Handle the push message here
-});
-
-// Handle notification click event in foreground
-messaging.onMessage(function (payload) {
-    console.log("Message received on foreground: ", payload);
-    // ...
 });
