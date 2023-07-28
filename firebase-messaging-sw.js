@@ -15,11 +15,10 @@ var firebaseConfig = {
 
 // initialize at custom folder
 firebase.initializeApp(firebaseConfig);
-const serviceWorkerRegistration = await navigator
-    .serviceWorker
-    .register('/firebase-fcm/firebase-messaging-sw.js');
 const messaging = firebase.messaging();
-messaging.useServiceWorker(serviceWorkerRegistration);
+
+console.log("I am ready!");
+
 
 // Handle incoming messages
 messaging.onBackgroundMessage(function (payload) {

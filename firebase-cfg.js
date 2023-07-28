@@ -8,7 +8,7 @@ var firebaseConfig = {
     measurementId: "G-XXZ2G21RRF"
 };
 
-// initialize at custom folder
+// initialize firebase app
 firebase.initializeApp(firebaseConfig);
 const serviceWorkerRegistration = await navigator
     .serviceWorker
