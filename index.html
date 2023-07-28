@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCM Message</title>
+    
+	<!-- Firebase Messaging -->
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
+</head>
+<body>
+    <h1>FCM TEST MESSAGE</h1>
+</body>
+<script>
+		// Initialize Firebase
+		var firebaseConfig = {
+			apiKey: "AIzaSyBlo6y6evat7l1KRvF3R7ptnfvd6wJXMwE",
+			authDomain: "test-push-message-e7f90.firebaseapp.com",
+			projectId: "test-push-message-e7f90",
+			storageBucket: "test-push-message-e7f90.appspot.com",
+			messagingSenderId: "506456702082",
+			appId: "1:506456702082:web:8f9d2fd50f484ccfb7c89b",
+  			measurementId: "G-XXZ2G21RRF"
+		};
+		firebase.initializeApp(firebaseConfig);
+
+		// Retrieve an instance of Firebase Messaging
+		const messaging = firebase.messaging();
+
+		// Request permission from the user to show notifications
+		messaging.requestPermission().then(function () {
+			console.log("Notification permission granted.");
+			// Get the device token for the current user
+			messaging.getToken().then(function (token) {
+			console.log("Token: " + token);
+			// Send this token to your backend server
+			// for later use when sending push messages
+			});
+		}).catch(function (err) {
+			console.log("Unable to get permission to notify.", err);
+		});
+	</script>
+</html>
