@@ -12,9 +12,14 @@ var firebaseConfig = {
     appId: "1:506456702082:web:8f9d2fd50f484ccfb7c89b",
     measurementId: "G-XXZ2G21RRF"
 };
-firebase.initializeApp(firebaseConfig);
 
+// initialize at custom folder
+firebase.initializeApp(firebaseConfig);
+const serviceWorkerRegistration = await navigator
+    .serviceWorker
+    .register('/firebase-fcm/firebase-messaging-sw.js');
 const messaging = firebase.messaging();
+messaging.useServiceWorker(serviceWorkerRegistration);
 
 // Handle incoming messages
 messaging.onBackgroundMessage(function (payload) {
