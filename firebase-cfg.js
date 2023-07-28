@@ -22,6 +22,10 @@ messaging.requestPermission().then(function () {
     // Get the device token for the current user
     messaging.getToken().then(function (token) {
         console.log("Token: " + token);
+        // add token to html
+        document.getElementById("token").innerHTML = token;
+
+
         // Send this token to your backend server
         // for later use when sending push messages
     });
