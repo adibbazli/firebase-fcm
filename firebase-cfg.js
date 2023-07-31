@@ -14,7 +14,7 @@ const serviceWorkerRegistration = await navigator.serviceWorker.register(
   "/firebase-fcm/firebase-messaging-sw.js"
 );
 const messaging = firebase.messaging();
-messaging.useServiceWorker(serviceWorkerRegistration);
+// messaging.useServiceWorker(serviceWorkerRegistration);
 
 // Handle notification click event in foreground
 messaging.onMessage(function (payload) {
@@ -23,11 +23,13 @@ messaging.onMessage(function (payload) {
 });
 
 // Request permission from the user to show notifications
-Notification.requestPermission().then(function () {
+Notification.requestPermission().then((permission) => {
   if (permission === "granted") {
     console.log("Notification permission granted.");
     // Get the device token for the current user
-    messaging.getToken().then(function (token) {
+    messaging.getToken({
+        serviceWorkerRegistration: serviceWorkerRegistration
+    }).then(function (token) {
       console.log("Token: " + token);
       // add token to html
       document.getElementById("token").innerHTML = token;
